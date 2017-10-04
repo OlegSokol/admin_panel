@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>order_id</td>
+                <td>order_price</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% if all_orders %}
+                {% for order in all_orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.total_price }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        No any orders
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

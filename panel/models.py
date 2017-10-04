@@ -28,6 +28,7 @@ class Order(models.Model):
     customer_name = models.CharField(max_length=200)
     customer_surname = models.CharField(max_length=200)
     customer_email = models.CharField(max_length=200)
+    customer_phone_number = models.IntegerField()
     products = models.ManyToManyField(Product)
     total_price = models.BigIntegerField()
     additional_info = models.TextField(null=True)
