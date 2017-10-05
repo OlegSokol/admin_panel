@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 from panel.models import Order
 
 
@@ -11,9 +10,6 @@ def index(request):
     return render(request, 'panel/index.html', context)
 
 
-def order_detail(request, order_id):
-    try:
-        order = Order.objects.get(pk=order_id)
-    except Order.DoesNotExist:
-        raise Http404("Order does not exists")
+def detail(request, order_id):
+    order = get_object_or_404(Order, pk=order_id)
     return render(request, 'panel/detail.html', {'order': order})

@@ -5,6 +5,37 @@
     <title>Title</title>
 </head>
 <body>
-    {{ order }}
+    ORDER ID: {{ order.id }} <br>
+    PRICE: {{ order.total_price }} <br>
+    CUSTOMER NAME: {{ order.customer_name }} <br>
+    CUSTOMER SURNAME: {{ order.customer_surname }} <br>
+    EMAIL: {{ order.customer_email }} <br>
+    PHONE NUMBER: {{ order.customer_phone_number }} <br>
+    CREATED DATE: {{ order.created }} <br>
+    MODIFIED DATE: {{ order.modified }} <br>
+    ADDITIONAL INFO: <br>
+    {{ order.additional_info }} <br>
+
+    PRODUCTS:
+    <table>
+        <thead>
+            <tr>
+                <th>PRODUCT_ID</th>
+                <th>PRODUCT TITLE</th>
+                <th>CATEGORY</th>
+                <th>PRICE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in order.products.all %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.title }}</td>
+                    <td>{{ product.category.name }}</td>
+                    <td>{{ product.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

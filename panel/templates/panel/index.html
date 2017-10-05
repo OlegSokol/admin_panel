@@ -8,22 +8,30 @@
     <table>
         <thead>
             <tr>
-                <td>order_id</td>
-                <td>order_price</td>
+                <th>ORDER ID</th>
+                <th>CUSTOMER PHONE</th>
+                <th>EMAIL</th>
+                <th>CREATED DATE</th>
+                <th>TOTAL PRICE</th>
+                <th>STATUS</th>
             </tr>
         </thead>
         <tbody>
             {% if all_orders %}
                 {% for order in all_orders %}
                     <tr>
-                        <td>{{ order.id }}</td>
+                        <td><a href="{% url 'panel:detail' order.id %}">{{ order.id }}</a></td>
+                        <td>{{ order.customer_phone_number }}</td>
+                        <td>{{ order.customer_email }}</td>
+                        <td>{{ order.created }}</td>
                         <td>{{ order.total_price }}</td>
+                        <td></td>
                     </tr>
                 {% endfor %}
             {% else %}
                 <tr>
                     <td>
-                        No any orders
+                        No orders
                     </td>
                 </tr>
             {% endif %}

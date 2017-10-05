@@ -12,6 +12,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     id = models.BigIntegerField(null=False, serialize=True, primary_key=True)
+    title = models.CharField(max_length=200, null=True)
     description = models.CharField(max_length=200)
     image_id = models.CharField(max_length=200)
     price = models.BigIntegerField()
