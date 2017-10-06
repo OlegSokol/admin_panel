@@ -12,4 +12,13 @@ def index(request):
 
 def detail(request, order_id):
     order = get_object_or_404(Order, pk=order_id)
-    return render(request, 'panel/detail.html', {'order': order})
+    statuses = order.ORDER_STATUS
+    return render(request, 'panel/detail.html', {'order': order, 'statuses': statuses})
+
+
+def update_status(request, order_id):
+    order = get_object_or_404(Order, pk=order_id)
+    statuses = order.ORDER_STATUS
+    order.status = request.POST['status']
+    order.save()
+    return render(request, 'panel/detail.html', {'order': order, 'statuses': statuses})

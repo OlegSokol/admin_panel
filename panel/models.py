@@ -25,6 +25,14 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    # Choices
+    ORDER_STATUS = (
+        ("N", "New"),
+        ("E", "In progress"),
+        ("P", "Payed"),
+        ("C", "Closed"),
+    )
+
     id = models.BigIntegerField(null=False, serialize=True, primary_key=True)
     customer_name = models.CharField(max_length=200)
     customer_surname = models.CharField(max_length=200)
@@ -33,6 +41,7 @@ class Order(models.Model):
     products = models.ManyToManyField(Product)
     total_price = models.BigIntegerField()
     additional_info = models.TextField(null=True)
+    status = models.CharField(max_length=1, choices=ORDER_STATUS, null=False, default='N')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 

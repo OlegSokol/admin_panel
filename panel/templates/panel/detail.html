@@ -6,15 +6,26 @@
 </head>
 <body>
     ORDER ID: {{ order.id }} <br>
-    PRICE: {{ order.total_price }} <br>
-    CUSTOMER NAME: {{ order.customer_name }} <br>
-    CUSTOMER SURNAME: {{ order.customer_surname }} <br>
-    EMAIL: {{ order.customer_email }} <br>
-    PHONE NUMBER: {{ order.customer_phone_number }} <br>
-    CREATED DATE: {{ order.created }} <br>
-    MODIFIED DATE: {{ order.modified }} <br>
-    ADDITIONAL INFO: <br>
-    {{ order.additional_info }} <br>
+    STATUS: {{ order.get_status_display }}
+    <form action="{% url 'panel:update_status' order.id %}" method="post">
+        {% csrf_token %}
+        <select name="status">
+            <option disabled selected>Choose status</option>
+            {% for id, value in statuses %}
+                <option value="{{ id }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Change">
+    </form><br>
+    PRICE: {{ order.total_price }} <br/>
+    CUSTOMER NAME: {{ order.customer_name }} <br/>
+    CUSTOMER SURNAME: {{ order.customer_surname }} <br/>
+    EMAIL: {{ order.customer_email }} <br/>
+    PHONE NUMBER: {{ order.customer_phone_number }} <br/>
+    CREATED DATE: {{ order.created }} <br/>
+    MODIFIED DATE: {{ order.modified }} <br/>
+    ADDITIONAL INFO: <br/>
+    {{ order.additional_info }} <br/>
 
     PRODUCTS:
     <table>
@@ -36,6 +47,6 @@
                 </tr>
             {% endfor %}
         </tbody>
-    </table>
+    </table><br/>
 </body>
 </html>
