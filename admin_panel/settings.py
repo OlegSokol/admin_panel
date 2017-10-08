@@ -40,6 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+LOGIN_URL = '/panel/login/'
+
+LOGIN_REDIRECT_URL = '/panel/'
+
+LOGIN_EXEMPT_URLS = (
+    r'^admin/',
+)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'admin_panel.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'admin_panel.urls'

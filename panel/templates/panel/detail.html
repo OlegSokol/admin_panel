@@ -11,7 +11,7 @@
         {% csrf_token %}
         <select name="status">
             <option disabled selected>Choose status</option>
-            {% for id, value in statuses %}
+            {% for id, value in order.ORDER_STATUS %}
                 <option value="{{ id }}">{{ value }}</option>
             {% endfor %}
         </select>
