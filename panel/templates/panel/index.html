@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+    <a href="{% url 'panel:my_orders' user.id %}">My Orders</a>
     <table>
         <thead>
             <tr>
@@ -20,12 +21,18 @@
             {% if all_orders %}
                 {% for order in all_orders %}
                     <tr>
-                        <td><a href="{% url 'panel:detail' order.id %}">{{ order.id }}</a></td>
+                        <td>
+                            {% if order.status != 'N' %}
+                                {{ order.id }}
+                            {% else %}
+                                <a href="{% url 'panel:detail' order.id %}">{{ order.id }}</a>
+                            {% endif %}
+                        </td>
                         <td>{{ order.customer_phone_number }}</td>
                         <td>{{ order.customer_email }}</td>
                         <td>{{ order.created }}</td>
                         <td>{{ order.total_price }}</td>
-                        <td></td>
+                        <td>{{ order.status }}</td>
                     </tr>
                 {% endfor %}
             {% else %}
