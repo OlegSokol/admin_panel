@@ -34,6 +34,7 @@ def detail(request, order_id):
 
     statuses = order.ORDER_STATUS
     order.status = 'E'
+    order.user_id = request.user.id
     order.save()
     return render(request, 'panel/detail.html', {'order': order, 'statuses': statuses})
 
